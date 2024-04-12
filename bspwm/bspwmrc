@@ -3,7 +3,7 @@
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 #default laptop monitor
-bspc monitor -d 1 2 3 4 5
+bspc monitor  eDP-1 -d 1 2 3 4 5
 
 #HDMI-1 monitor
 bspc monitor HDMI-1 -d 1 2 3 4 5
@@ -53,3 +53,5 @@ if echo "$xrandr_output" | grep "$SECONDARY_MONITOR connected"; then
     # Activa el monitor secundario como principal
     xrandr --output $SECONDARY_MONITOR --mode 1920x1080 --primary
 fi
+
+
