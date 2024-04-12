@@ -129,3 +129,7 @@ super + alt + w
 super + Print 
 	scrot '%Y-%m-%d_%H-%M-%S.png' -e 'mv $f ~/Pictures/Screenshots/'
 
+
+#run copy key script
+shift + super + p
+	/home/ricardo/.config/scripts/copy-token.sh
