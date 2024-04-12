@@ -1,0 +1,55 @@
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+#default laptop monitor
+bspc monitor -d 1 2 3 4 5
+
+#HDMI-1 monitor
+bspc monitor HDMI-1 -d 1 2 3 4 5
+
+
+bspc config border_width         1
+bspc config window_gap        	8
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+#Border style
+
+bspc config normal_border_color "#282828"
+bspc config focused_border_color  "#BDAE93"
+bspc config click_to_focus true
+
+#AutoStart application
+sxhkd &
+picom --config $HOME/.config/picom/picom.conf &
+nitrogen --restore &
+dunst &
+polybar &
+
+
+#monitor configure
+
+# Monitor principal (laptop)
+PRIMARY_MONITOR="eDP-1"
+# Monitor secundario (monitor externo)
+SECONDARY_MONITOR="HDMI-1"
+
+# Ejecuta xrandr para obtener información sobre los monitores conectados
+xrandr_output=$(xrandr)
+
+# Busca la cadena que indica que el monitor secundario está conectado
+if echo "$xrandr_output" | grep "$SECONDARY_MONITOR connected"; then
+    # Desactiva el monitor principal
+    xrandr --output $PRIMARY_MONITOR --off
+    # Activa el monitor secundario como principal
+    xrandr --output $SECONDARY_MONITOR --mode 1920x1080 --primary
+fi
