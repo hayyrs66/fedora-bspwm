@@ -124,6 +124,11 @@ super + {Left,Down,Up,Right}
 super + alt + w
 	/usr/bin/brave-browser
 
+# spotify
+super + alt + m
+	flatpak run com.spotify.Client
+
+
 #screenshot with scrot
 
 super + Print 
@@ -133,3 +138,8 @@ super + Print
 #run copy key script
 shift + super + p
 	/home/ricardo/.config/scripts/copy-token.sh
+
+
+#change language layout
+super + space
+	/home/ricardo/.config/scripts/layout-keyboard.sh
