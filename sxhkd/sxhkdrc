@@ -143,3 +143,8 @@ shift + super + p
 #change language layout
 super + space
 	/home/ricardo/.config/scripts/layout-keyboard.sh
+
+# thunar
+
+super + e
+	thunar
